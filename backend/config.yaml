@@ -7,7 +7,7 @@ ffmpeg:
   img_watermark: "../static/img/icon150.png"
 
 notifier:
-  host: "https://sandbox.api.mailtrap.io/api/send/2752068"
+  host: "your_notifier_host"
 
 connection:
   server: "db"
