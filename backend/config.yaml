@@ -1,0 +1,15 @@
+http_port: ":8080"
+origin_url: "http://localhost:3000"
+
+ffmpeg:
+  audio_watermark: "../static/audio/audio_watermark.wav"
+  video_watermark: "../static/video/video_watermark.mp4"
+  img_watermark: "../static/img/icon150.png"
+
+notifier:
+  host: "https://sandbox.api.mailtrap.io/api/send/2752068"
+
+connection:
+  server: "db"
+  database: "sade"
+  driver: "postgres"
