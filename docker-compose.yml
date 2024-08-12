@@ -22,7 +22,7 @@ services:
   db:
     image: postgres:latest
     environment:
-      POSTGRES_USER: ciprian
+      POSTGRES_USER: sade
       POSTGRES_PASSWORD: vRjxmtu4ve7x
       POSTGRES_DB: sade
     ports:
