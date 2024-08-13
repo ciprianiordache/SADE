@@ -29,7 +29,7 @@ func getFromEnv(cfg *Config) {
 	if val, exists := os.LookupEnv("DB_PASS"); exists {
 		cfg.DbConnection.Pass = val
 	}
-	if val, exists := os.LookupEnv("SESSION_KET"); exists {
+	if val, exists := os.LookupEnv("SESSION_KEY"); exists {
 		cfg.Session.Key = val
 	}
 	if val, exists := os.LookupEnv("SESSION_NAME"); exists {
