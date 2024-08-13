@@ -4,7 +4,7 @@ WORKDIR /app
 COPY ../frontend /app/frontend
 
 WORKDIR /app/frontend
-RUN npm install
+RUN npm install && npm run build
 
 FROM node:latest
 WORKDIR /app
