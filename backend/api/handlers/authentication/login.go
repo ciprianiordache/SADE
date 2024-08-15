@@ -18,7 +18,7 @@ func Login(c *gin.Context) {
 	err = handlers.A.LoginUser(email, link)
 	if err != nil {
 		handlers.Log.Errorf("Unable to log in: %v", err)
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unable to log in."})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": fmt.Sprintf("Unable to log in: %v", err)})
 		return
 	}
 
