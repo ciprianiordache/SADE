@@ -18,8 +18,6 @@ func SaveSession(c *gin.Context) {
 		return
 	}
 
-	log.Println("User data received:", user)
-
 	session := sessions.Default(c)
 	session.Set("user_id", user.ID)
 	session.Set("first_name", user.FirstName)
@@ -33,5 +31,4 @@ func SaveSession(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"success": true})
-	fmt.Println(user)
 }
