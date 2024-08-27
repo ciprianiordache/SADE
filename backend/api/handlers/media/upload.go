@@ -76,9 +76,9 @@ func Upload(c *gin.Context) {
 		Price:        price,
 		Locked:       true,
 	}
-	err = handlers.A.RegisterUser(email, link, "client", "", "")
+	err = handlers.A.RegisterUser(email, link, "client", "", "", "")
 	if err != nil {
-		_ = handlers.A.LoginUser(email, link)
+		_ = handlers.A.LoginUser(email, "", link)
 	}
 
 	data := map[string]interface{}{
