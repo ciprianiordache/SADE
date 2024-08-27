@@ -19,6 +19,11 @@ func New(audio, video, img string) *FFMpeg {
 }
 
 func (fw *FFMpeg) addVideoWatermark(input, output string) error {
+	err := os.MkdirAll("../temp", os.ModePerm)
+	if err != nil {
+		return fmt.Errorf("error creating temp directory: %s", err)
+	}
+
 	tempFile, err := os.CreateTemp("../temp", "temp_video*.mp4")
 	if err != nil {
 		return fmt.Errorf("could not create temp file: %v", err)
@@ -90,6 +95,11 @@ func (fw *FFMpeg) addVideoWatermark(input, output string) error {
 }
 
 func (fw *FFMpeg) addAudioWatermark(input, output string) error {
+
+	err := os.MkdirAll("../temp", os.ModePerm)
+	if err != nil {
+		return fmt.Errorf("error creating temp directory: %s", err)
+	}
 	tempWatermarkFile, err := os.CreateTemp("../temp", "temp_watermark*.mp3")
 	if err != nil {
 		return fmt.Errorf("could not create temp watermark file: %v", err)
