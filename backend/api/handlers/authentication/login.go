@@ -10,13 +10,14 @@ import (
 
 func Login(c *gin.Context) {
 	email := c.PostForm("email")
+	password := c.PostForm("password")
 	link, err := utility.GenerateLink()
 	if err != nil {
 		handlers.Log.Errorf("Unable to generate link: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to generate link."})
 		return
 	}
-	err = handlers.A.LoginUser(email, link)
+	err = handlers.A.LoginUser(email, password, link)
 	if err != nil {
 		handlers.Log.Errorf("Unable to log in: %v", err)
 		c.JSON(http.StatusUnauthorized, gin.H{"error": fmt.Sprintf("Unable to log in: %v", err)})
