@@ -5,6 +5,7 @@
     let email = '';
     let firstName = '';
     let lastName = '';
+    let password = '';
 
     async function handleRegister(event) {
         event.preventDefault()
@@ -14,7 +15,7 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams({ email, first_name: firstName, last_name: lastName })
+                body: new URLSearchParams({ email, first_name: firstName, last_name: lastName, password:  password})
             });
             const result = await response.json();
             if(response.ok) {
@@ -39,6 +40,8 @@
         <h2>Register to SADE</h2>
         <label for="email">Email</label>
         <input id="email" type="email" bind:value={email} required>
+        <label for="password">Password</label>
+        <input id="password" type="password" bind:value={password} required>
         <label for="first_name">First Name</label>
         <input id="first_name" type="text" bind:value={firstName} required>
         <label for="last_name">Last Name</label>
