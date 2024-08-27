@@ -5,6 +5,7 @@ import (
 	"log"
 	"sade-backend/api/models"
 	"sade-backend/db/cmd"
+	"sade-backend/pkg/utility"
 	"time"
 )
 
@@ -16,7 +17,7 @@ func New(userTable, linkTable *cmd.DataTable, timeout time.Duration) *Auth {
 	}
 }
 
-func (a *Auth) LoginUser(email, link string) error {
+func (a *Auth) LoginUser(email, password, link string) error {
 	result, err := a.userTable.CmdRead("email", email)
 	if err != nil {
 		return err
@@ -27,6 +28,13 @@ func (a *Auth) LoginUser(email, link string) error {
 	verified := result[0]["verified"].(bool)
 	if !verified {
 		return fmt.Errorf("email is not verified")
+	}
+	role := result[0]["role"].(string)
+	if role == "admin" {
+		storedPass := result[0]["password"].(string)
+		if !utility.CheckPass(password, storedPass) {
+			return fmt.Errorf("password is incorrect")
+		}
 	}
 	data := map[string]interface{}{
 		"email":  email,
@@ -101,7 +109,7 @@ func (a *Auth) ValidateLink(link string) (*models.User, bool, error) {
 	return user, true, nil
 }
 
-func (a *Auth) RegisterUser(email, link, role, firstName, lastName string) error {
+func (a *Auth) RegisterUser(email, link, role, firstName, lastName, password string) error {
 	result, err := a.userTable.CmdRead("email", email)
 	if err != nil {
 		return err
@@ -114,7 +122,12 @@ func (a *Auth) RegisterUser(email, link, role, firstName, lastName string) error
 		"role":  role,
 	}
 
-	if firstName != "" && lastName != "" {
+	if firstName != "" && lastName != "" && password != "" {
+		hashedPass, err := utility.Hash(password)
+		if err != nil {
+			return err
+		}
+		userData["password"] = hashedPass
 		userData["first_name"] = firstName
 		userData["last_name"] = lastName
 	}
