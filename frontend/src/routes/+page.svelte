@@ -3,6 +3,7 @@
     import { apiHost } from "$lib/utils.js";
 
     let email = '';
+    let password = '';
 
     async function handleLogin(event) {
         event.preventDefault()
@@ -12,7 +13,7 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams({ email })
+                body: new URLSearchParams({ email: email, password: password })
             });
             const result = await response.json();
             if(response.ok) {
@@ -37,6 +38,8 @@
         <h2>Login to SADE</h2>
         <label for="email">Email</label>
         <input id="email" type="email" bind:value={email} required>
+        <label for="password">Password</label>
+        <input id="password" type="password" bind:value={password} required>
         <button type="submit">Login</button>
         <p>If you don't have an account please <a href="/register">Register</a></p>
     </form>
