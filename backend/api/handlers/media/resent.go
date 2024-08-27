@@ -24,7 +24,7 @@ func Resent(c *gin.Context) {
 		return
 	}
 	media := mediaData[0]
-	err = handlers.A.LoginUser(email, link)
+	err = handlers.A.LoginUser(email, "", link)
 	if err != nil {
 		handlers.Log.Errorf("Unable to login: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to login!"})
