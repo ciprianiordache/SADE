@@ -1,10 +1,8 @@
 package authentication
 
 import (
-	"fmt"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
 	"sade-backend/api/handlers"
 	"sade-backend/api/models"
