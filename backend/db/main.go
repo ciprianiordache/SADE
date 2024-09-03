@@ -85,6 +85,7 @@ func (db *Connection) CreateTable() {
     						first_name TEXT,
     						last_name TEXT,
     						email TEXT UNIQUE NOT NULL,
+	  					password TEXT,
     						role TEXT NOT NULL,
     						verified BOOLEAN NOT NULL DEFAULT FALSE,
     						created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
