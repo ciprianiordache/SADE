@@ -50,6 +50,3 @@ To run the backend locally:
 
 ## Contact Information 
 For any inquiries or support, please contact [ciipriian5521@gmail.com].
-
-## Contributing
-Contribution are welcome!
